@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import { TextField, Box, Button, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+ 
 import { API } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
+import { ToastContainer, toast } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
 
 const Component = styled(Box)`
     width: 400px;
@@ -32,7 +34,7 @@ const Wrapper = styled(Box)`
 
 const LoginButton = styled(Button)`
     text-transform: none;
-    background: #FB641B;
+    background: #33b249;
     color: #fff;
     height: 48px;
     border-radius: 2px;
@@ -72,6 +74,9 @@ const signupInitialValues = {
 };
 
 const Login = ({ isUserAuthenticated }) => {
+    const msg1=()=>{
+        toast.success("login success");
+    }
     const [login, setLogin] = useState(loginInitialValues);
     const [signup, setSignup] = useState(signupInitialValues);
     const [error, showError] = useState('');
@@ -80,7 +85,7 @@ const Login = ({ isUserAuthenticated }) => {
     const navigate = useNavigate();
     const { setAccount } = useContext(DataContext);
 
-    const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
+    const imageURL = 'https://blogspark.in/wp-content/uploads/2022/07/blogspark.png';
 
     useEffect(() => {
         showError(false);
@@ -92,12 +97,15 @@ const Login = ({ isUserAuthenticated }) => {
 
     const onInputChange = (e) => {
         setSignup({ ...signup, [e.target.name]: e.target.value });
+    
     }
 
     const loginUser = async () => {
         let response = await API.userLogin(login);
         if (response.isSuccess) {
             showError('');
+
+   
 
             sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
             sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
@@ -108,6 +116,7 @@ const Login = ({ isUserAuthenticated }) => {
             navigate('/');
         } else {
             showError('Something went wrong! please try again later');
+            console.log('failed');
         }
     }
 
@@ -133,12 +142,12 @@ const Login = ({ isUserAuthenticated }) => {
                 {
                     account === 'login' ?
                         <Wrapper>
-                            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name='username' label='Enter Username' />
-                            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
+                            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name='username' label='Enter Your Username' />
+                            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name='password' label='Enter Your Password' />
 
                             {error && <Error>{error}</Error>}
 
-                            <LoginButton variant="contained" onClick={() => loginUser()} >Login</LoginButton>
+                            <LoginButton variant="contained" onClick={() =>loginUser()}> Login</LoginButton>
                             <Text style={{ textAlign: 'center' }}>OR</Text>
                             <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}>Create an account</SignupButton>
                         </Wrapper> :
@@ -153,6 +162,7 @@ const Login = ({ isUserAuthenticated }) => {
                         </Wrapper>
                 }
             </Box>
+            
         </Component>
     )
 }

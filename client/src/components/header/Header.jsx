@@ -1,12 +1,12 @@
 
-import { AppBar, Toolbar, styled, Button } from '@mui/material'; 
+import { AppBar, Toolbar, styled} from '@mui/material'; 
 import { Link } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
 
 
 const Component = styled(AppBar)`
-    background: #FFFFFF;
+    background: #FED8B1;
     color: black;
 `;
 

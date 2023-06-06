@@ -13,7 +13,14 @@ import Update from './components/create/Update';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Login from './components/account/Login';
+import { ThemeProvider, createMuiTheme, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   const token = sessionStorage.getItem('accessToken');
   return isAuthenticated && token ? 
@@ -24,10 +31,11 @@ const PrivateRoute = ({ isAuthenticated, ...props }) => {
 };
 
 function App() {
-
   const [isAuthenticated, isUserAuthenticated] = useState(false);
 
   return (
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
     <DataProvider>
       <BrowserRouter>
         <Box style={{ marginTop: 64 }}>
@@ -61,6 +69,7 @@ function App() {
         </Box>
       </BrowserRouter>
     </DataProvider>
+    </ThemeProvider>
   );
 }
 

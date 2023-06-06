@@ -8,7 +8,7 @@ import { DataContext } from "../../../context/DataProvider";
 
 const Component = styled(Box)`
     margin-top: 30px;
-    background: #F5F5F5;
+    background: #000000;
     padding: 10px;
 `;
 
@@ -25,7 +25,7 @@ const Name = styled(Typography)`
 
 const StyledDate = styled(Typography)`
     font-size: 14px;
-    color: #878787;
+    color: #000000;
 `;
 
 const DeleteIcon = styled(Delete)`

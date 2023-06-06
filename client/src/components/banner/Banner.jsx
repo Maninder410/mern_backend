@@ -3,7 +3,7 @@ import { styled, Box, Typography } from '@mui/material';
 
 const Image = styled(Box)`
     width: 100%;
-    background: url(https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg) center/55% repeat-x #000;
+    background: url(https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) center/55% repeat-x #000;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -26,9 +26,9 @@ const Banner = () => {
     
     return (
         <Image>
-            <Heading>BLOG</Heading>
-            <SubHeading>Code for Interview</SubHeading>
+            <Heading>SPARKBLOG</Heading>
         </Image>
+        
     )
 }
 
